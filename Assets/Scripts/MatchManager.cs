@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.UI;
-public class UIController : MonoBehaviour
+using Photon.Pun;
+using UnityEngine.SceneManagement;
+
+public class MatchManager : MonoBehaviour
 {
-    public static UIController instance;
+    public static MatchManager instance;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public TMP_Text overheatedMessage;
-    public Slider weaponTempSlider, healtSlider;
 
-    public GameObject deathScreen;
-    public TMP_Text deathText, healthText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (!PhotonNetwork.IsConnected)
+        {
+            SceneManager.LoadScene(0);
+        }    
     }
 
     // Update is called once per frame
